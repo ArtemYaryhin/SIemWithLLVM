@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>SIEM Dashboard</title>
+  <style>
+    table, th, td { border: 1px solid black; border-collapse: collapse; padding: 5px; }
+    th { cursor: pointer; }
+  </style>
+</head>
+<body>
+  <h1>SIEM Log Dashboard</h1>
+  <input type="text" id="searchInput" placeholder="Filter logs by timestamp, device, or event type...">
+  <br><br>
+  <table id="logsTable">
+    <thead>
+      <tr>
+        <th>Timestamp</th>
+        <th>Device ID</th>
+        <th>Event Type</th>
+        <th>Message</th>
+        <th>LLM Analysis</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for log in logs %}
+      <tr>
+        <td>{{ log[0] }}</td>
+        <td>{{ log[1] }}</td>
+        <td>{{ log[2] }}</td>
+        <td>{{ log[3] }}</td>
+        <td>{{ log[4] if log[4] else "" }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <script>
+    document.getElementById("searchInput").addEventListener("keyup", function() {
+      var filter = this.value.toUpperCase();
+      var rows = document.querySelector("#logsTable tbody").rows;
+      for (var i = 0; i < rows.length; i++) {
+          var timestamp = rows[i].cells[0].textContent.toUpperCase();
+          var device = rows[i].cells[1].textContent.toUpperCase();
+          var eventType = rows[i].cells[2].textContent.toUpperCase();
+          if (timestamp.indexOf(filter) > -1 || device.indexOf(filter) > -1 || eventType.indexOf(filter) > -1) {
+              rows[i].style.display = "";
+          } else {
+              rows[i].style.display = "none";
+          }      
+      }
+    });
+  </script>
+</body>
+</html>
