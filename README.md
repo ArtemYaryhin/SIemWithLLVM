@@ -1,6 +1,6 @@
 # SIEM Demo
 
-This repository contains a demo prototype of a SIEM (Security Information and Event Management) system for OT security in an automotive environment. The demo includes synthetic log generation, rule-based and enhanced threat detection, log storage in SQLite, real-time visualization via a Flask dashboard, and integration with a real LLM (Large Language Model) for log analysis.
+This repository contains a demo prototype of a SIEM (Security Information and Event Management) system. The demo includes synthetic log generation, rule-based and enhanced threat detection, log storage in SQLite, real-time visualization via a Flask dashboard, and integration with a real LLM (Large Language Model) for log analysis.
 
 ## Features
 
